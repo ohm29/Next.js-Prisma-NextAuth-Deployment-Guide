@@ -142,22 +142,6 @@ Use Docker Compose to manage the production and test service environments, inclu
       # Google OAuth (if using)
       - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID:-}
       - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET:-}
-      # Google Service Account
-      - GOOGLE_SERVICE_ACCOUNT_CLIENT_ID=${GOOGLE_SERVICE_ACCOUNT_CLIENT_ID:-}
-      - GOOGLE_SERVICE_ACCOUNT_EMAIL=${GOOGLE_SERVICE_ACCOUNT_EMAIL:-}
-      - GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY=${GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY:-}
-      - GOOGLE_SERVICE_ACCOUNT_DELEGATED_USER=${GOOGLE_SERVICE_ACCOUNT_DELEGATED_USER:-}
-      - GOOGLE_SENDER_EMAIL=${GOOGLE_SENDER_EMAIL:-}
-      - GOOGLE_API_KEY=${GOOGLE_API_KEY:-}
-      # Email Configuration (if using)
-      - SHOPEE_SMTP_HOST=${SHOPEE_SMTP_HOST:-}
-      - SHOPEE_SMTP_PORT=${SHOPEE_SMTP_PORT:-587}
-      - SHOPEE_SMTP_SECURE=${SHOPEE_SMTP_SECURE:-}
-      - SHOPEE_SMTP_USER=${SHOPEE_SMTP_USER:-}
-      - SHOPEE_SMTP_PASSWORD=${SHOPEE_SMTP_PASSWORD:-}
-      # Space API (if using)
-      - SPACE_API_URL=${SPACE_API_URL:-}
-      - SPACE_API_TOKEN=${SPACE_API_TOKEN:-}
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3005/api/health"]
@@ -193,22 +177,6 @@ Use Docker Compose to manage the production and test service environments, inclu
       # Google OAuth (if using)
       - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID:-}
       - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET:-}
-      # Google Service Account
-      - GOOGLE_SERVICE_ACCOUNT_CLIENT_ID=${GOOGLE_SERVICE_ACCOUNT_CLIENT_ID:-}
-      - GOOGLE_SERVICE_ACCOUNT_EMAIL=${GOOGLE_SERVICE_ACCOUNT_EMAIL:-}
-      - GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY=${GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY:-}
-      - GOOGLE_SERVICE_ACCOUNT_DELEGATED_USER=${GOOGLE_SERVICE_ACCOUNT_DELEGATED_USER:-}
-      - GOOGLE_SENDER_EMAIL=${GOOGLE_SENDER_EMAIL:-}
-      - GOOGLE_API_KEY=${GOOGLE_API_KEY:-}
-      # Email Configuration (if using)
-      - SHOPEE_SMTP_HOST=${SHOPEE_SMTP_HOST:-}
-      - SHOPEE_SMTP_PORT=${SHOPEE_SMTP_PORT:-587}
-      - SHOPEE_SMTP_SECURE=${SHOPEE_SMTP_SECURE:-}
-      - SHOPEE_SMTP_USER=${SHOPEE_SMTP_USER:-}
-      - SHOPEE_SMTP_PASSWORD=${SHOPEE_SMTP_PASSWORD:-}
-      # Space API (if using)
-      - SPACE_API_URL=${SPACE_API_URL:-}
-      - SPACE_API_TOKEN=${SPACE_API_TOKEN:-}
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3006/api/health"]
