@@ -220,7 +220,7 @@ Use Docker Compose to manage the production and test service environments, inclu
   
 ```
 ## 3. Deployment Steps
-### 3.1Build and Run: Use Docker Compose to build the images and start the services in detached mode (-d).
+### 3.1 Build and Run: Use Docker Compose to build the images and start the services in detached mode (-d).
 ```
   docker compose up -d --build
 ```
