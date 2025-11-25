@@ -104,12 +104,12 @@ To leverage Next.js's efficient Standalone output mode (which creates a minimal,
 
   # Allow dynamic port configuration (default: 3006)
   ARG PORT=3006
-EXPOSE ${PORT}
-
-ENV PORT=${PORT}
-ENV HOSTNAME="0.0.0.0"
-
-CMD ["node", "server.js"]
+  EXPOSE ${PORT}
+  
+  ENV PORT=${PORT}
+  ENV HOSTNAME="0.0.0.0"
+  
+  CMD ["node", "server.js"]
 
 ```
 ### 2.2 Docker Compose
