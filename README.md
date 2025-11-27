@@ -19,7 +19,6 @@ To leverage Next.js's efficient Standalone output mode (which creates a minimal,
 ```
   # DATABASE
   DATABASE_URL = "mysql://{user}:{password}@{host}/{db_name}"
-  
   #AUTH
   NEXTAUTH_URL=http://localhost:3000
 ```
@@ -111,7 +110,7 @@ To leverage Next.js's efficient Standalone output mode (which creates a minimal,
 ### 2.2 Docker Compose
 Use Docker Compose to manage the production and test service environments, including resource limits and health checks.
 ```
-  services:
+ services:
   # ============================
   # Production Environment Service
   # ============================
@@ -119,10 +118,10 @@ Use Docker Compose to manage the production and test service environments, inclu
     build:
       context: .
       args:
-        PORT: 3005
-    container_name: th-noti-prod
+        PORT: 3000
+    container_name: container-name-prod
     ports:
-      - "3005:3005"
+      - "3000:3000"
     deploy:
       resources:
         limits:
@@ -135,7 +134,7 @@ Use Docker Compose to manage the production and test service environments, inclu
       - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
       # Database Configuration (REQUIRED)
       - DATABASE_URL=${DATABASE_URL}
-      # Google OAuth (if using)
+      # Google OAuth (REQUIRED)
       - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID:-}
       - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET:-}
     restart: unless-stopped
@@ -145,6 +144,7 @@ Use Docker Compose to manage the production and test service environments, inclu
       timeout: 10s
       retries: 3
       start_period: 40s
+
 ```
 ## 3. Deployment Steps
 ### 3.1 Build and Run: Use Docker Compose to build the images and start the services in detached mode (-d).
