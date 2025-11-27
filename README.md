@@ -18,14 +18,10 @@ To leverage Next.js's efficient Standalone output mode (which creates a minimal,
 .env 
 ```
   # DATABASE
-  PROD_DATABASE_URL = "mysql://{user}:{password}@{host}/{db_name}"
-  TEST_DATABASE_URL = "mysql://{user}:{password}@{host}/{db_name}"
+  DATABASE_URL = "mysql://{user}:{password}@{host}/{db_name}"
   
   #AUTH
-  NEXTAUTH_SECRET=generate-base64
-  PROD_NEXTAUTH_URL={domain_prod}
-  TEST_NEXTAUTH_URL={domain_test}
-  DEV_NEXTAUTH_URL=http://localhost:3000
+  NEXTAUTH_URL=http://localhost:3000
 ```
 ## 2.Docker Deployment
 ### 2.1 Multi-Stage Dockerfile
@@ -135,10 +131,10 @@ Use Docker Compose to manage the production and test service environments, inclu
     environment:
       - NODE_ENV=production
       # NextAuth Configuration (REQUIRED)
-      - NEXTAUTH_URL=${PROD_NEXTAUTH_URL}
+      - NEXTAUTH_URL=${NEXTAUTH_URL}
       - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
       # Database Configuration (REQUIRED)
-      - DATABASE_URL=${HOST_PROD_DATABASE_URL}
+      - DATABASE_URL=${DATABASE_URL}
       # Google OAuth (if using)
       - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID:-}
       - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET:-}
@@ -149,43 +145,6 @@ Use Docker Compose to manage the production and test service environments, inclu
       timeout: 10s
       retries: 3
       start_period: 40s
-
-
-  # ============================
-  # Test Environment Service
-  # ============================
-  th-noti-test:
-    build:
-      context: .
-      args:
-        PORT: 3006
-    container_name: th-noti-test
-    ports:
-      - "3006:3006"
-    deploy:
-      resources:
-        limits:
-          cpus: '0.25'        # Maximum 0.5 CPU core
-          memory: 256M      # Maximum 256MB RAM
-    environment:
-      - NODE_ENV=production
-      # NextAuth Configuration (REQUIRED)
-      - NEXTAUTH_URL=${TEST_NEXTAUTH_URL}
-      - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
-      # Database Configuration (REQUIRED)
-      - DATABASE_URL=${HOST_TEST_DATABASE_URL}
-      # Google OAuth (if using)
-      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID:-}
-      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET:-}
-    restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3006/api/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 40s
-
-  
 ```
 ## 3. Deployment Steps
 ### 3.1 Build and Run: Use Docker Compose to build the images and start the services in detached mode (-d).
